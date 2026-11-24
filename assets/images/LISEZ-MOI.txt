@@ -1,0 +1,20 @@
+BIG MARKET 38 — OÙ DÉPOSER VOS PHOTOS
+======================================
+
+Règle unique : remplacez le fichier par votre photo en gardant EXACTEMENT le même nom
+(même dossier, même nom, extension .jpg). Le site l'affiche aussitôt, bien cadrée.
+
+logo/        logo.png (fond transparent), favicon.png, apple-touch-icon.png
+accueil/     hero.jpg ............................ grande photo de l'accueil (1200 x 1500)
+magasin/     facade.jpg (1600 x 1200), interieur-1.jpg (1200 x 1600), interieur-2.jpg (1400 x 1400)
+rayons/      fruits-legumes.jpg, boucherie.jpg, produits-maghreb.jpg, epicerie.jpg,
+             boissons.jpg, produits-frais.jpg, surgeles.jpg ......... (1200 x 1500)
+fraicheur/   fraicheur-principale.jpg (2000 x 1125), fraicheur-2.jpg, fraicheur-3.jpg (1200 x 1500)
+maghreb/     algerie.jpg (1600 x 1200), epicerie.jpg, boissons.jpg, specialites.jpg (1200 x 1200)
+promotions/  promo-01.jpg à promo-06.jpg ......................... (1000 x 1000)
+galerie/     galerie-01.jpg à galerie-12.jpg (portrait 1000 x 1250, paysage 1200 x 900, carré 1000 x 1000)
+tiktok/      tiktok-01.jpg à tiktok-04.jpg ....................... (720 x 1280, vertical)
+partage/     og-image.jpg ...................... image de partage sur les réseaux (1200 x 630)
+
+Astuce : ouvrez le site avec ?images à la fin de l'adresse pour voir le nom de chaque photo.
+Pour ajouter des photos à la galerie ou de nouvelles promos : fichier assets/js/contenu.js (voir README.md).
