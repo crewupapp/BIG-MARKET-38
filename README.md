@@ -1,0 +1,178 @@
+# BIG MARKET 38 — Site web et espace admin
+
+Site de **BIG MARKET 38** (Big Market by Ayadi), supermarché de proximité au 3 avenue de Grugliasco, 38130 Échirolles.
+
+- HTML, CSS et JavaScript, sans aucune bibliothèque externe : rien à installer.
+- Prêt pour **GitHub Pages** (fichier `index.html` à la racine).
+- **Espace admin** (`admin/`) relié à **Supabase** : textes, photos, prix, promos, horaires, galerie, TikTok et questions fréquentes se modifient sans toucher au code.
+- Couleurs du logo uniquement : rouge, noir et blanc. Animations au défilement sur toutes les sections (désactivées si le visiteur a demandé moins d'animations).
+- Aucun cookie, polices hébergées avec le site, carte Google chargée seulement au clic.
+
+---
+
+## 1. Mettre le site en ligne avec GitHub Pages
+
+1. Créez un dépôt sur GitHub (par exemple `bigmarket38`).
+2. Envoyez **tout le contenu de ce dossier** à la racine du dépôt (bouton *Add file › Upload files*, puis glissez les fichiers et dossiers).
+3. Dans le dépôt : *Settings › Pages › Build and deployment* : *Source* = « Deploy from a branch », branche `main`, dossier `/ (root)`, puis *Save*.
+4. Au bout d'une minute, le site est en ligne (`https://votre-compte.github.io/bigmarket38/`).
+   L'espace admin est à la même adresse suivie de **`admin/`** (`https://votre-compte.github.io/bigmarket38/admin/`).
+5. Nom de domaine (facultatif, ex. `bigmarket38.fr`) : *Settings › Pages › Custom domain*, puis suivez les indications de GitHub pour les DNS.
+
+Après la mise en ligne, remplacez dans `index.html` la ligne
+`<meta property="og:image" content="assets/images/partage/og-image.jpg">`
+par l'adresse complète (ex. `https://bigmarket38.fr/assets/images/partage/og-image.jpg`) : c'est l'image affichée quand le lien est partagé sur WhatsApp, Facebook…
+
+Pour voir le site sur votre ordinateur sans le mettre en ligne : double-cliquez sur `index.html` (Safari, Chrome, Edge, Firefox). Ouvert ainsi depuis un dossier, le site charge ses polices depuis `assets/css/polices-integrees.css`, car Chrome refuse les fichiers de police dans ce cas. En ligne, ce fichier n'est jamais téléchargé.
+
+**Important :** après chaque nouvelle version, remplacez **tout** l'ancien dossier par le nouveau. Sinon le navigateur garde les anciens fichiers, et donc les anciens défauts.
+
+---
+
+## 2. L'espace admin
+
+Adresse : **votre site + `/admin/`**. Il fonctionne sur ordinateur, tablette et téléphone.
+
+### Première connexion (une seule fois)
+1. Ouvrez l'espace admin : l'écran **« Créer mon accès »** s'affiche.
+2. Saisissez l'adresse de l'administrateur : **morgancoulet5@icloud.com**, puis choisissez votre mot de passe (10 caractères minimum).
+3. Un **code de secours** s'affiche (format `XXXX-XXXX-XXXX-XXXX`). **Notez-le** (notes, gestionnaire de mots de passe) : il permet de choisir un nouveau mot de passe en cas d'oubli. Il n'est affiché qu'une fois.
+4. Vous arrivez dans le tableau de bord. Ensuite, il suffit de vous connecter avec votre adresse et votre mot de passe.
+
+Seule l'adresse **morgancoulet5@icloud.com** peut créer cet accès, et la création n'est possible que pendant 14 jours (jusqu'au 7 décembre 2026). Passé ce délai sans avoir créé l'accès, il faudra le réactiver dans Supabase (table `admins`, colonne `creation_avant`).
+
+### Au quotidien
+Le menu présente chaque rubrique du site, dans l'ordre de la page :
+
+| Rubrique | Ce que vous modifiez |
+|---|---|
+| **Promotions** | Produit, précision, prix, prix barré, unité, dates (ou « chaque semaine »), photo. Interrupteur « Promos d'exemple » à désactiver dès que vous publiez vos vraies promos. Une promo disparaît toute seule après sa date de fin. |
+| **Horaires et fermetures** | Horaires de chaque jour, jours fermés, fermetures et horaires exceptionnels (annoncés sur le site 14 jours avant). |
+| **Accueil** | Grand titre, phrase d'accroche, boutons, grande photo, bandeau qui défile. |
+| **Le magasin** | Titre, textes, les 3 étiquettes, les 3 photos, bandeau. |
+| **Rayons** | Titre, phrase, et chaque rayon : nom, accroche, description, couleur, photo. Ajout, suppression, ordre. |
+| **Fraîcheur** | Grande photo plein écran, titre, textes, les 3 points forts, 2 photos. |
+| **Saveurs du Maghreb** | Titre, textes, bouton, grande photo et sa pastille, cartes, bandeau. |
+| **Galerie** | Photos (légende, catégorie, format) et catégories des filtres. |
+| **TikTok** | Titre, textes, vignettes des vidéos (titre, lien, image). |
+| **Infos pratiques** | Titre, textes, « Bon à savoir », questions fréquentes, bloc « Une question ? ». |
+| **Coordonnées et réseaux** | Nom, adresse, **lien Google Maps** (position exacte du magasin), téléphone, e-mail, TikTok, Instagram, Facebook, Snapchat, phrase du pied de page. Un champ vide est masqué sur le site. |
+
+- Après vos changements, cliquez sur **« Enregistrer »** (ou Ctrl+S / Cmd+S) : c'est en ligne immédiatement. Un point rouge dans le menu signale une rubrique pas encore enregistrée.
+- **Photos** : « Choisir une photo » accepte les photos du téléphone ou de l'ordinateur (JPEG, PNG). Elles sont réduites automatiquement à la bonne taille avant l'envoi. Remplissez la « Description de la photo » (utile aux malvoyants et à Google).
+- **Annuler** revient à la dernière version enregistrée. **Version précédente** recharge la version d'avant le dernier enregistrement. **Contenu d'origine** recharge le contenu de départ du site. Dans les trois cas, rien n'est publié tant que vous n'avez pas cliqué sur « Enregistrer ».
+- Si l'onglet se ferme avant l'enregistrement, vos modifications sont récupérées à la prochaine ouverture (sur le même appareil).
+
+### Mettre la position Google Maps
+
+1. Sur le téléphone, ouvrez Google Maps, cherchez le magasin et ouvrez sa fiche.
+2. Touchez **« Partager »**, puis **« Copier le lien »** (un lien du type `https://maps.app.goo.gl/…`).
+3. Dans l'admin, rubrique **« Coordonnées et réseaux »**, collez-le dans **« Lien Google Maps du magasin »**, puis **« Enregistrer »**.
+
+L'admin vérifie le lien tout de suite : « Position trouvée » ou « Fiche reconnue » s'affiche en vert, avec un aperçu de la carte et le bouton « Vérifier dans Google Maps ». Sur ordinateur, le code « Partager › Intégrer une carte » fonctionne aussi. Ensuite, sur le site, la carte, les boutons Itinéraire (Google Maps, Waze, Plans) et le nouveau bouton « Voir la fiche Google Maps » pointent sur cette position. Sans lien, tout continue de fonctionner avec l'adresse.
+
+### Mot de passe
+- **Changer de mot de passe** ou **créer un nouveau code de secours** : bouton « Mon compte » en haut à droite.
+- **Mot de passe oublié** : sur l'écran de connexion, « Mot de passe oublié ? », puis votre adresse, votre code de secours et un nouveau mot de passe. Un nouveau code de secours vous est alors donné (l'ancien ne fonctionne plus).
+- Aucun e-mail n'est envoyé par l'espace admin : tout se fait avec le mot de passe et le code de secours.
+
+---
+
+## 3. Supabase
+
+Le contenu du site est enregistré dans le projet Supabase **« BIG MARKET 38 »** (organisation « Gta », serveurs à Paris).
+
+| Élément | Rôle |
+|---|---|
+| Table `contenu` | Un enregistrement par rubrique modifiée dans l'admin. Une rubrique jamais modifiée affiche le contenu d'origine (`assets/js/contenu.js`). |
+| Table `contenu_historique` | Les versions précédentes, pour le bouton « Version précédente ». |
+| Table `admins` | Les adresses autorisées dans l'espace admin (aujourd'hui : morgancoulet5@icloud.com). Invisible depuis le site. |
+| Stockage `photos` | Les photos envoyées depuis l'admin. |
+| Fonction `acces-admin` | Création de l'accès, mot de passe oublié, changement de mot de passe, code de secours. |
+
+**Sécurité** : les visiteurs peuvent seulement lire le contenu publié. Modifier un texte, une photo ou un prix est réservé au compte administrateur, et aucun autre compte ne peut être créé. La clé écrite dans `assets/js/config.js` est une clé publique, faite pour être visible.
+
+**Si Supabase ne répond pas**, le site reste en ligne : il affiche la dernière version reçue par le navigateur, ou à défaut le contenu d'origine. L'espace admin, lui, a besoin de Supabase.
+
+**Offre gratuite de Supabase** : un projet qui ne reçoit aucune activité pendant une semaine peut être mis en pause par Supabase ; les visites du site suffisent en principe à l'éviter. Si cela arrive, réactivez le projet depuis supabase.com (bouton « Restore »).
+
+Le dossier `supabase/` contient la structure de la base (`migrations/`) et le code de la fonction (`functions/acces-admin/`) : ils sont déjà installés dans le projet et servent d'archive.
+
+**Ajouter un autre administrateur** : dans Supabase, *Table Editor › admins*, ajoutez une ligne avec son adresse e-mail (en minuscules). Il pourra créer son accès depuis « Première connexion » pendant 14 jours.
+
+---
+
+## 4. Logo et images de départ
+
+| Fichier | Rôle |
+|---|---|
+| `assets/images/logo/logo.png` | Logo (en-tête, accueil, pied de page, admin) |
+| `assets/images/logo/favicon.png`, `apple-touch-icon.png` | Icônes de l'onglet et de l'écran d'accueil du téléphone |
+| `assets/images/partage/og-image.jpg` | Image de partage sur les réseaux (1200 × 630 px) |
+
+Les dossiers `assets/images/…` contiennent les **cadres d'attente** (rouge, noir ou blanc) affichés tant que vous n'avez pas mis vos photos. Le plus simple est de remplacer chaque photo depuis l'espace admin. Astuce : ajoutez `?images` à la fin de l'adresse du site pour afficher le nom du fichier d'origine sur chaque photo.
+
+---
+
+## 5. Les animations : quand elles se lancent et combien de temps elles durent
+
+**Règle générale** : chaque élément apparaît quand son haut arrive vers 85 % de la hauteur de l'écran (là où le regard l'attend), en 0,75 s. Ce qui apparaît en même temps arrive en cascade, dans l'ordre de lecture (titre, puis phrase, puis le reste). Dans les bandes qui défilent à l'horizontale sur téléphone, toutes les cartes apparaissent ensemble. Après l'apparition, les effets de survol retrouvent leur propre vitesse.
+
+| Section | Moment | Durée |
+|---|---|---|
+| Entrée du site (1re visite) | Le rideau du magasin est baissé, le logo s'y colle ; dès que le site est prêt, le rideau se déverrouille et remonte, le logo file à sa place dans l'en-tête et l'accueil s'anime dessous. Un clic, une touche ou un défilement accélère la levée | Rideau 1,1 s, tout en place en 2,5 s environ |
+| Accueil | Titre lettre par lettre, phrase, boutons, photo, logo, badge, bandeau | Tout est en place en 1,7 s |
+| Le magasin | Texte qui s'allume mot à mot pendant le défilement, terminé quand le paragraphe est au milieu de l'écran ; étiquettes qui se balancent ; photos dévoilées par un rideau | Rideau 0,95 s, étiquettes 1,25 s |
+| Nos rayons (ordinateur) | Les 7 rayons défilent à l'horizontale pendant qu'on descend, avec compteur et accès direct | 0,8 écran de défilement par rayon |
+| Nos rayons (téléphone) | Cartes empilées, la carte recouverte s'assombrit | Pendant le défilement |
+| Fraîcheur | La photo s'ouvre en plein écran pendant que le mot éclate, puis la légende arrive et reste lisible avant la suite | Sur 1,4 écran de défilement |
+| Saveurs du Maghreb | La grande photo s'ouvre, terminée quand elle arrive au milieu de l'écran ; les cartes glissent | Pendant le défilement |
+| Promos | Étiquettes prix qui basculent, auvent rayé | 0,95 s |
+| Galerie | Photos colonne par colonne ; après un filtre, dans l'ordre des photos ; visionneuse plein écran | 0,55 à 0,8 s |
+| TikTok | Téléphones qui apparaissent puis montent à des vitesses différentes | 0,8 s |
+| Infos pratiques | Ticket de caisse qui « s'imprime », repère qui tombe sur la carte, FAQ qui s'ouvre | Ticket 1,2 s, FAQ 0,4 s |
+| Pied de page | Lettres géantes « BIG MARKET 38 » qui montent, toujours terminées avant le bas de la page | Pendant le défilement |
+
+Les grands titres (même modifiés dans l'admin) s'ajustent tout seuls à la largeur réelle de leur colonne, calculée en direct : la méthode CSS utilisée avant (« container queries ») est mal gérée par Safari dans une grille, ce qui faisait passer la ligne adresse / horaires sur le titre de l'accueil. Avant livraison, un contrôle automatique a vérifié qu'aucun texte n'en recouvre un autre, à 8 tailles d'écran, sur toute la page. Si le visiteur a demandé à son téléphone ou à son ordinateur de réduire les animations, tout s'affiche directement, sans mouvement.
+
+**Fluidité du défilement** : toutes les animations liées au défilement passent par un seul moteur qui mesure d'abord, puis déplace, sans jamais forcer le navigateur à recalculer la page en cours de route. Ce qui bouge est déplacé sur son propre calque, sans être redessiné : bandeaux, photos, cartes des rayons, auvent des promos. La barre du haut a un fond plein au lieu d'un flou d'arrière-plan, très coûteux à chaque image. Sur l'accueil, la ligne adresse / horaires / TikTok est placée sous les boutons, dans la même colonne que le titre : elle ne peut plus passer dessus, quel que soit le navigateur.
+
+---
+
+## 6. À vérifier avant la mise en ligne
+
+- **Adresse** : vous avez indiqué « 3 avenue de Grugliasco, Échirolles ». L'ancien site envoie l'itinéraire vers « 3 Avenue d'Honhoue, 38130 Echirolles ». Collez le lien Google Maps de la fiche du magasin dans l'admin (« Coordonnées et réseaux », voir plus haut) : la carte et les itinéraires pointeront exactement sur le magasin.
+- **Téléphone, e-mail, autres réseaux** : aucun n'était public ; ajoutez-les dans l'admin si vous le souhaitez.
+- **Promotions et vidéos TikTok** : ce sont des exemples (prix fictifs, tampons « Exemple »). Remplacez-les dans l'admin et désactivez « Promos d'exemple » et « Vignettes d'exemple ».
+- **Mentions légales** (`mentions-legales.html`) : complétez les passages encadrés en rouge (raison sociale, SIRET, directeur de la publication…).
+
+---
+
+## 7. Organisation des fichiers
+
+```
+index.html                 Page principale (les 10 sections)
+mentions-legales.html      Mentions légales (à compléter)
+404.html                   Page « introuvable »
+robots.txt, .nojekyll      Fichiers techniques (l'admin n'est pas référencé par Google)
+admin/
+  index.html               Espace admin
+  admin.css, admin.js      Mise en page et fonctionnement de l'admin
+assets/
+  css/style.css            Mise en forme et animations du site
+  css/polices-integrees.css  Polices pour le site ouvert depuis un dossier (jamais chargé en ligne)
+  js/config.js             Connexion au projet Supabase « BIG MARKET 38 »
+  js/supabase.js           Échanges avec Supabase (lecture, connexion, enregistrement, photos)
+  js/contenu.js            Contenu d'origine (secours si Supabase ne répond pas)
+  js/donnees.js            Accès aux données + horaires en direct
+  js/rendu.js              Construction des sections à partir des données
+  js/animations.js         Moteur d'animations au défilement
+  js/app.js                Menu, visionneuse, carte, FAQ, statut ouvert/fermé
+  fonts/                   Polices Archivo Black, Anton, DM Sans (+ licences)
+  images/                  Logo, logo NEXORA STUDIO (pied de page) et images de départ
+supabase/
+  migrations/              Structure de la base (déjà appliquée)
+  functions/acces-admin/   Fonction d'accès à l'admin (déjà installée)
+```
+
+Polices : Archivo Black, Anton et DM Sans, sous licence SIL Open Font License (textes dans `assets/fonts/licences/`).
